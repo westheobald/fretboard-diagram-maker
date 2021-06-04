@@ -5,8 +5,10 @@
   padding: 0;
 }
 
-body {
-  display: flex;
-  justify-content: center;
-  margin-top: 200px;
+html {
+  box-sizing: border-box;
+}
+
+.hidden {
+  display: none;
 }

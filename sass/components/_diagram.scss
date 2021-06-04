@@ -1,23 +1,73 @@
 @use '../utils/variables';
-.diagram {
-  position: relative;
-  height: 200px;
-  width: 150px;
+
+@media print {
+  .diagram-form {
+    display: none !important;
+  }
+  .chord-name {
+    border: none !important;
+  }
 }
+
+body {
+  background-image: linear-gradient(90deg, #efd5ff 0%, #515ada 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.app {
+  margin: 10rem 0;
+  padding: 10rem;
+  width: 100%;
+  max-width: 80rem;
+  border-radius: 1rem;
+  background-color: variables.$color-white;
+}
+
+.chord-diagrams {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  justify-content: center;
+  align-items: center;
+  min-height: 21.2rem;
+}
+
+.diagram-form {
+  min-height: 21.2rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.diagram {
+  &-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  width: 150px;
+  position: relative;
+  margin: 0 auto 20px auto;
+}
+
 .grid {
   &-background {
     position: absolute;
     top: 0;
-    left: -12px;
-    z-index: -5;
+    z-index: 1;
   }
   &__el {
-    &--last-row {
-      border: none !important;
-    }
-
     & > * {
       border: 1px solid black;
+    }
+    &--no-border {
+      border: none !important;
+    }
+    &--opacity-border {
+      border: none !important;
     }
   }
   height: 100%;
@@ -30,6 +80,11 @@
 }
 
 .note {
+  &-container {
+    z-index: 2;
+    position: absolute;
+    top: 0;
+  }
   height: 2rem;
   width: 2rem;
   border-radius: 100%;
@@ -38,8 +93,37 @@
   align-self: center;
   fill: transparent;
 
-  &--on {
-    fill: green;
+  &--fretted {
+    fill: variables.$color-notes;
     border: none;
   }
+  &--open {
+    stroke: variables.$color-notes;
+    stroke-width: 3rem;
+    border: none;
+  }
+}
+
+.chord-name {
+  height: 3rem;
+  width: 10rem;
+  font-size: 2rem;
+  font-weight: 600;
+  text-align: center;
+  margin: 0 auto;
+  border: 1px solid rgba(black, 0.5);
+}
+
+.num-strings,
+.num-frets {
+  font-size: 2rem;
+  width: 4rem;
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.chord-tools {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

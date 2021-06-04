@@ -6,12 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="sass/style.css" />
-    <script defer src="js/controller.js"></script>
+    <script defer src="js/script.js"></script>
   </head>
   <body>
-    <div class="diagram">
-      <div class="grid note-container"></div>
-      <div class="grid grid-background"></div>
+    <div class="app">
+      <div class="chord-diagrams">
+        <form class="diagram-form">
+          <label for="num-strings">Number of Strings</label>
+          <input type="number" class="num-strings" value="6" id="num-strings" />
+          <label for="num-frets">Number of Frets</label>
+          <input type="number" class="num-frets" value="5" id="num-frets" />
+          <input type="submit" class="btn btn__add-diagram" value="Add Chord"></input>
+          <p class="error-message hidden">Something went wrong! Strings must be between 4 and 7 and frets must be under 30!</p>
+        </form>
+      </div>
     </div>
   </body>
 </html>

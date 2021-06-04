@@ -5,10 +5,12 @@
   padding: 0;
 }
 
-body {
-  display: flex;
-  justify-content: center;
-  margin-top: 200px;
+html {
+  box-sizing: border-box;
+}
+
+.hidden {
+  display: none;
 }
 
 html {
@@ -19,10 +21,80 @@ body {
   font-size: 1.6rem;
 }
 
+.btn {
+  padding: 2rem;
+  border: none;
+  border-radius: 1rem;
+  background-color: #e2e2e2;
+  transition: all 1s;
+}
+.btn:hover {
+  background-color: #b9b9b9;
+}
+.btn:active {
+  transform: scale(0.9);
+}
+
+.icon {
+  width: 2rem;
+  height: 2em;
+  margin: 0 1rem;
+  stroke-width: 0;
+  stroke: black;
+  fill: black;
+}
+
+@media print {
+  .diagram-form {
+    display: none !important;
+  }
+
+  .chord-name {
+    border: none !important;
+  }
+}
+body {
+  background-image: linear-gradient(90deg, #efd5ff 0%, #515ada 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.app {
+  margin: 10rem 0;
+  padding: 10rem;
+  width: 100%;
+  max-width: 80rem;
+  border-radius: 1rem;
+  background-color: white;
+}
+
+.chord-diagrams {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  justify-content: center;
+  align-items: center;
+  min-height: 21.2rem;
+}
+
+.diagram-form {
+  min-height: 21.2rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .diagram {
-  position: relative;
-  height: 200px;
   width: 150px;
+  position: relative;
+  margin: 0 auto 20px auto;
+}
+.diagram-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .grid {
@@ -33,14 +105,16 @@ body {
 .grid-background {
   position: absolute;
   top: 0;
-  left: -12px;
-  z-index: -5;
-}
-.grid__el--last-row {
-  border: none !important;
+  z-index: 1;
 }
 .grid__el > * {
   border: 1px solid black;
+}
+.grid__el--no-border {
+  border: none !important;
+}
+.grid__el--opacity-border {
+  border: none !important;
 }
 .grid > * {
   border: 1px solid black;
@@ -55,9 +129,43 @@ body {
   align-self: center;
   fill: transparent;
 }
-.note--on {
-  fill: green;
+.note-container {
+  z-index: 2;
+  position: absolute;
+  top: 0;
+}
+.note--fretted {
+  fill: black;
   border: none;
+}
+.note--open {
+  stroke: black;
+  stroke-width: 3rem;
+  border: none;
+}
+
+.chord-name {
+  height: 3rem;
+  width: 10rem;
+  font-size: 2rem;
+  font-weight: 600;
+  text-align: center;
+  margin: 0 auto;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.num-strings,
+.num-frets {
+  font-size: 2rem;
+  width: 4rem;
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.chord-tools {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /*# sourceMappingURL=style.css.map */

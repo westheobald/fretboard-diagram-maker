@@ -1,0 +1,91 @@
+const state = {
+  diagrams: 1,
+};
+
+function notesHTML(currentString, currentFret) {
+  return `
+    <svg class="note" data-string="${currentString}" data-fret="${currentFret}" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="50" cy="50" r="50"/>
+    </svg>
+    `;
+}
+function gridHTML(currentString, currentFret) {
+  if (currentString === 1 || currentFret === 0) {
+    return '<div class="grid__el grid__el--no-border"></div>';
+  }
+  return '<div class="grid__el"></div>';
+}
+
+function renderDiagram(chord, numOfStrings, numOfFrets) {
+  let notes = '';
+  let grid = '';
+  let currentFret = 0;
+  let currentString = 1;
+
+  while (currentFret <= numOfFrets) {
+    while (currentString <= numOfStrings) {
+      notes += notesHTML(currentString, currentFret);
+      grid += gridHTML(currentString, currentFret);
+      currentString += 1;
+    }
+    currentFret += 1;
+    currentString = 1;
+  }
+  const noteContainer = chord.querySelector('.note-container');
+  const gridContainer = chord.querySelector('.grid-background');
+  noteContainer.insertAdjacentHTML('beforeend', notes);
+  gridContainer.insertAdjacentHTML('beforeend', grid);
+
+  noteContainer.style.gridTemplateColumns = `repeat(${numOfStrings}, 1fr)`;
+  noteContainer.style.gridTemplateRows = `repeat(${numOfFrets + 1}, 1fr)`;
+  gridContainer.style.gridTemplateColumns = `repeat(${numOfStrings}, 1fr)`;
+  gridContainer.style.gridTemplateRows = `repeat(${numOfFrets + 1}, 1fr)`;
+  const left = -27 + 3 * (numOfStrings - 1);
+  gridContainer.style.left = `${left}px`;
+}
+
+function addNotes(chord) {
+  chord.addEventListener('click', (e) => {
+    const note = e.target.closest('.note');
+    if (note) {
+      if (+note.dataset.fret === 0) {
+        note.classList.toggle('note--open');
+      } else {
+        note.classList.toggle('note--fretted');
+      }
+    }
+  });
+}
+function addChord() {
+  const form = document.querySelector('.diagram-form');
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    form.querySelector('.error-message').classList.add('hidden');
+    const strings = +form.querySelector('.num-strings').value;
+    const frets = +form.querySelector('.num-frets').value;
+    if (strings < 4 || strings > 7 || frets < 2 || frets > 30) {
+      form.querySelector('.error-message').classList.remove('hidden');
+      return;
+    }
+    const markup = `
+      <div class="diagram-container" id="chord-${state.diagrams}">
+        <input type="text" class="chord-name" placeholder="Chord..." />
+        <div class="chord-tools">
+          <svg class="icon arrow-left"><use href="/images/sprites.svg#icon-arrow-left"></use></svg>       
+          <svg class="icon arrow-right"><use href="/images/sprites.svg#icon-arrow-right"></use></svg>   
+          <svg class="icon icon-bin"><use href="/images/sprites.svg#icon-bin"></use></svg>  
+        </div>
+        <div class="diagram" style="height: ${frets * 40}px">
+          <div class="grid note-container"></div>
+          <div class="grid grid-background"></div>
+        </div>
+      </div>
+      `;
+    form.insertAdjacentHTML('beforeBegin', markup);
+    const chord = document.getElementById(`chord-${state.diagrams}`);
+    renderDiagram(chord, strings, frets);
+    addNotes(chord);
+    state.diagrams += 1;
+  });
+}
+addChord();
