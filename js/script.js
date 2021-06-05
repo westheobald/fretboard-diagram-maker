@@ -56,6 +56,41 @@ function addNotes(chord) {
     }
   });
 }
+function reorderChords() {
+  const diagrams = document.querySelectorAll('.diagram-container');
+  let count = 1;
+  diagrams.forEach((dia) => {
+    const diagram = dia;
+    diagram.id = `chord-${count}`;
+    count += 1;
+  });
+}
+function chordTools(chord) {
+  chord.querySelector('.chord-tools').addEventListener('click', (e) => {
+    if (e.target.closest('.icon-bin')) {
+      const chordNumber = e.target.closest('.diagram-container');
+      document.getElementById(chordNumber.id).remove();
+      reorderChords();
+    }
+    if (e.target.closest('.arrow-left')) {
+      if (chord.id === 'chord-1') return;
+      const newChord = document.getElementById(
+        `chord-${chord.id.charAt(chord.id.length - 1) - 1}`,
+      );
+      chord.parentNode.insertBefore(chord, newChord);
+      reorderChords();
+    }
+    if (e.target.closest('.arrow-right')) {
+      if (!chord.nextElementSibling.nextElementSibling) return;
+      chord.parentNode.insertBefore(
+        chord,
+        chord.nextElementSibling.nextElementSibling,
+      );
+      reorderChords();
+    }
+  });
+}
+
 function addChord() {
   const form = document.querySelector('.diagram-form');
   form.addEventListener('submit', (e) => {
@@ -85,6 +120,7 @@ function addChord() {
     const chord = document.getElementById(`chord-${state.diagrams}`);
     renderDiagram(chord, strings, frets);
     addNotes(chord);
+    chordTools(chord);
     state.diagrams += 1;
   });
 }
