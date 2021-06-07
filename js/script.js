@@ -114,9 +114,9 @@ function addChord() {
       <div class="diagram-container" id="chord-${state.diagrams}">
         <input type="text" class="chord-name" placeholder="Chord..." />
         <div class="chord-tools">
-          <svg class="icon arrow-left"><use href="/images/sprites.svg#icon-arrow-left"></use></svg>       
-          <svg class="icon arrow-right"><use href="/images/sprites.svg#icon-arrow-right"></use></svg>   
-          <svg class="icon icon-bin"><use href="/images/sprites.svg#icon-bin"></use></svg>  
+          <svg class="icon arrow-left"><use href="./images/sprites.svg#icon-arrow-left"></use></svg>       
+          <svg class="icon arrow-right"><use href="./images/sprites.svg#icon-arrow-right"></use></svg>   
+          <svg class="icon icon-bin"><use href="./images/sprites.svg#icon-bin"></use></svg>  
         </div>
         <div class="diagram" style="height: ${frets * 40}px">
           <input type="text" class="chord-fret" value="1" />
