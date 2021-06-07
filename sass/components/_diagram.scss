@@ -4,8 +4,52 @@
   .diagram-form {
     display: none !important;
   }
+  .icon-printer {
+    display: none !important;
+  }
   .chord-name {
+    display: block;
     border: none !important;
+    margin: 0 auto !important;
+  }
+  .chord-tools {
+    display: none !important;
+  }
+  .header__title {
+    border: none !important;
+  }
+  .chord-diagrams {
+    display: block !important;
+    padding: 0 3rem !important;
+    width: 100%;
+  }
+  .chord-fret {
+    border: none !important;
+
+    &--none {
+      opacity: 0;
+    }
+  }
+  .diagram-container {
+    page-break-inside: avoid;
+
+    display: inline-block !important;
+    margin: 0 1rem !important;
+  }
+
+  // .body {
+  //   display: block;
+  // }
+  .app {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+}
+
+@media only screen and (max-width: 770px) {
+  .app {
+    padding: 10rem 1rem !important;
+    width: 90% !important;
   }
 }
 
@@ -31,15 +75,27 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 21.2rem;
+  column-gap: 1rem;
 }
 
 .diagram-form {
-  min-height: 21.2rem;
+  min-height: 30rem;
   height: 100%;
+  max-height: 34rem;
+  width: 16rem;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: rgba(variables.$color-black, 0.02);
+  border: 1px solid rgba(variables.$color-black, 0.1);
+  box-shadow: 0 0.5rem 1rem rgba(variables.$color-black, 0.2);
+  border-radius: 1rem;
+
+  & label {
+    margin-bottom: 2rem;
+  }
 }
 
 .diagram {
@@ -61,7 +117,7 @@ body {
   }
   &__el {
     & > * {
-      border: 1px solid black;
+      border: 1px solid variables.$color-black;
     }
     &--no-border {
       border: none !important;
@@ -92,6 +148,7 @@ body {
   justify-self: center;
   align-self: center;
   fill: transparent;
+  cursor: pointer;
 
   &--fretted {
     fill: variables.$color-notes;
@@ -108,10 +165,9 @@ body {
   height: 3rem;
   width: 10rem;
   font-size: 2rem;
-  font-weight: 600;
   text-align: center;
   margin: 0 auto;
-  border: 1px solid rgba(black, 0.5);
+  border: 1px solid rgba(variables.$color-black, 0.5);
 }
 
 .num-strings,
@@ -126,4 +182,29 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.chord-fret {
+  width: 20px;
+  text-align: center;
+  position: relative;
+  font-size: 1.8rem;
+  top: 38px;
+  left: -20px;
+  z-index: 10;
+}
+
+.header {
+  width: 100%;
+  position: relative;
+
+  &__title {
+    display: block;
+    margin: 0 auto 2rem auto;
+    height: 5rem;
+    width: 90%;
+    max-width: 50rem;
+    text-align: center;
+    font-size: 3rem;
+  }
 }

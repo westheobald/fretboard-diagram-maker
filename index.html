@@ -6,10 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="sass/style.css" />
-    <script defer src="js/script.js"></script>
+    <script type="module" src="js/script.js"></script>
   </head>
   <body>
     <div class="app">
+      <header class="header">
+        <input type="text" class="header__title" placeholder="Enter a title..." />
+        <svg class="icon icon-printer"><use href="/images/sprites.svg#icon-printer"></use></svg>       
+      </header>
       <div class="chord-diagrams">
         <form class="diagram-form">
           <label for="num-strings">Number of Strings</label>

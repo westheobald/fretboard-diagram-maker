@@ -98,8 +98,16 @@ function addChord() {
     form.querySelector('.error-message').classList.add('hidden');
     const strings = +form.querySelector('.num-strings').value;
     const frets = +form.querySelector('.num-frets').value;
-    if (strings < 4 || strings > 7 || frets < 2 || frets > 30) {
+    if (strings < 4 || strings > 7) {
       form.querySelector('.error-message').classList.remove('hidden');
+      form.querySelector('.error-message').textContent =
+        'Must be between 4 and 7 strings!';
+      return;
+    }
+    if (frets < 1) {
+      form.querySelector('.error-message').classList.remove('hidden');
+      form.querySelector('.error-message').textContent =
+        'Must have at least 1 fret!';
       return;
     }
     const markup = `
@@ -111,6 +119,7 @@ function addChord() {
           <svg class="icon icon-bin"><use href="/images/sprites.svg#icon-bin"></use></svg>  
         </div>
         <div class="diagram" style="height: ${frets * 40}px">
+          <input type="text" class="chord-fret" value="1" />
           <div class="grid note-container"></div>
           <div class="grid grid-background"></div>
         </div>
@@ -125,3 +134,13 @@ function addChord() {
   });
 }
 addChord();
+
+document.querySelector('.icon-printer').addEventListener('click', () => {
+  document.querySelectorAll('.chord-fret').forEach((fret) => {
+    console.log(fret);
+    if (fret.value === '1') {
+      fret.classList.add('chord-fret--none');
+    }
+  });
+  window.print();
+});

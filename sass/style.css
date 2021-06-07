@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap");
 *,
 *::before,
 *::after {
@@ -6,6 +7,10 @@
 }
 
 html {
+  box-sizing: border-box;
+}
+
+body {
   box-sizing: border-box;
 }
 
@@ -19,17 +24,25 @@ html {
 
 body {
   font-size: 1.6rem;
+  font-family: "Roboto", sans-serif;
+}
+
+input {
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
 }
 
 .btn {
   padding: 2rem;
   border: none;
   border-radius: 1rem;
-  background-color: #e2e2e2;
+  background-color: #9089f0;
   transition: all 1s;
+  cursor: pointer;
+  color: white;
 }
 .btn:hover {
-  background-color: #b9b9b9;
+  background-color: #bfbeff;
 }
 .btn:active {
   transform: scale(0.9);
@@ -41,7 +54,22 @@ body {
   margin: 0 1rem;
   stroke-width: 0;
   stroke: black;
+  fill: rgba(0, 0, 0, 0.534);
+  transition: fill 0.5s, transform 1s;
+  cursor: pointer;
+}
+.icon:hover {
   fill: black;
+}
+.icon:active {
+  transform: scale(0.9);
+}
+.icon-printer {
+  height: 100%;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 30px;
 }
 
 @media print {
@@ -49,8 +77,52 @@ body {
     display: none !important;
   }
 
+  .icon-printer {
+    display: none !important;
+  }
+
   .chord-name {
+    display: block;
     border: none !important;
+    margin: 0 auto !important;
+  }
+
+  .chord-tools {
+    display: none !important;
+  }
+
+  .header__title {
+    border: none !important;
+  }
+
+  .chord-diagrams {
+    display: block !important;
+    padding: 0 3rem !important;
+    width: 100%;
+  }
+
+  .chord-fret {
+    border: none !important;
+  }
+  .chord-fret--none {
+    opacity: 0;
+  }
+
+  .diagram-container {
+    page-break-inside: avoid;
+    display: inline-block !important;
+    margin: 0 1rem !important;
+  }
+
+  .app {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+}
+@media only screen and (max-width: 770px) {
+  .app {
+    padding: 10rem 1rem !important;
+    width: 90% !important;
   }
 }
 body {
@@ -75,15 +147,26 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 21.2rem;
+  column-gap: 1rem;
 }
 
 .diagram-form {
-  min-height: 21.2rem;
+  min-height: 30rem;
   height: 100%;
+  max-height: 34rem;
+  width: 16rem;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: rgba(0, 0, 0, 0.02);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+  border-radius: 1rem;
+}
+.diagram-form label {
+  margin-bottom: 2rem;
 }
 
 .diagram {
@@ -128,6 +211,7 @@ body {
   justify-self: center;
   align-self: center;
   fill: transparent;
+  cursor: pointer;
 }
 .note-container {
   z-index: 2;
@@ -148,7 +232,6 @@ body {
   height: 3rem;
   width: 10rem;
   font-size: 2rem;
-  font-weight: 600;
   text-align: center;
   margin: 0 auto;
   border: 1px solid rgba(0, 0, 0, 0.5);
@@ -166,6 +249,30 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.chord-fret {
+  width: 20px;
+  text-align: center;
+  position: relative;
+  font-size: 1.8rem;
+  top: 38px;
+  left: -20px;
+  z-index: 10;
+}
+
+.header {
+  width: 100%;
+  position: relative;
+}
+.header__title {
+  display: block;
+  margin: 0 auto 2rem auto;
+  height: 5rem;
+  width: 90%;
+  max-width: 50rem;
+  text-align: center;
+  font-size: 3rem;
 }
 
 /*# sourceMappingURL=style.css.map */
