@@ -10,3 +10,60 @@
 @use 'components/diagram';
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap');
+
+@media print {
+  .diagram-form {
+    display: none !important;
+  }
+  .icon-printer {
+    display: none !important;
+  }
+  .chord-name {
+    display: block;
+    border: none !important;
+    margin: 0 auto !important;
+  }
+  .chord-tools {
+    display: none !important;
+  }
+  .header__title {
+    border: none !important;
+  }
+  .chord-diagrams {
+    display: block !important;
+    padding: 0 3rem !important;
+    width: 100%;
+  }
+  .chord-fret {
+    border: none !important;
+
+    &--none {
+      opacity: 0;
+    }
+  }
+  .diagram-container {
+    page-break-inside: avoid;
+
+    display: inline-block !important;
+    margin: 0 1rem !important;
+  }
+
+  // .body {
+  //   display: block;
+  // }
+  .app {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+}
+
+@media only screen and (max-width: 770px) {
+  .app {
+    padding: 10rem 1rem !important;
+    width: 90% !important;
+  }
+  .header__title {
+    width: 80%;
+    margin-left: 0;
+  }
+}
